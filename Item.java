@@ -11,6 +11,10 @@ public class Item {
         return this.name;
     }
 
+    public int getPrice(){  //return cost per item
+        return this.price;
+    }
+
     public String toString(){
         return  this.name + ":" + this.price + "\n" ;
     }

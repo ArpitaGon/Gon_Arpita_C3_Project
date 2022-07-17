@@ -65,8 +65,17 @@ public class Restaurant {
 
     public int calculateOrderCost(List<String> itemList) throws itemNotFoundException{
         int cost = 0;
+        if(!itemList.isEmpty()) {
+            for (String itemName : itemList) {
+                Item item = findItemByName(itemName);
+                if (item==null){
+                    throw new itemNotFoundException("Item not found");
+                }else {
+                    cost += item.getPrice();
+                }
+            }
+        }
         return cost;
     }
-
 
 }

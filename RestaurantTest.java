@@ -77,7 +77,7 @@ class RestaurantTest {
     // display total order cost of selected items
     // negative TC --------------------
     // display total order cost as 0 if selected items is empty or null
-    // display or throw exception if selected item not found in the arraylist of items
+    // throw exception if selected item not found in the arraylist of items
 
 
     @Test
