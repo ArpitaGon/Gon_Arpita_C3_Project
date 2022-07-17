@@ -4,6 +4,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 //@ExtendWith(MockitoExtension.class)
 
@@ -63,4 +66,40 @@ class RestaurantTest {
                 ()->restaurant.removeFromMenu("French fries"));
     }
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+
+    // TDD scenarios ------------------------------------------------------------------->
+    // positive TC --------------------
+    // send selected items for cost calculation from the restaurant menu list.
+    // find each item cost from selected items
+    // calculate total order cost
+    // display total order cost of selected items
+    // negative TC --------------------
+    // display total order cost as 0 if selected items is empty or null
+    // display or throw exception if selected item not found in the arraylist of items
+
+
+    @Test
+    public void calculate_order_cost_when_menu_items_selected_from_existing_list() throws itemNotFoundException {
+        List<String> items = new ArrayList<String>();
+        items.add("Sweet corn soup");
+        items.add("Vegetable lasagne");
+        assertEquals(388,restaurant.calculateOrderCost(items));
+
+    }
+
+    @Test
+    public void order_cost_0_if_no_items_added() throws itemNotFoundException {
+        List<String> items = new ArrayList<String>();
+        assertEquals(0,restaurant.calculateOrderCost(items));
+    }
+
+    @Test
+    public void item_selected_not_in_the_list_should_throw_exception() throws itemNotFoundException {
+        List<String> items = new ArrayList<String>();
+        items.add("Lassi");
+        assertThrows(itemNotFoundException.class,()->restaurant.calculateOrderCost(items));
+    }
+
 }
